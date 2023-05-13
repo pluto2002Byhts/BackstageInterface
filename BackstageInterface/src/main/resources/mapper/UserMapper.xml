@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pluto.mapper.UserMapper">
+    <!--Boolean update(User user);-->
+<!--    <update id="update">-->
+<!--        update sys_user-->
+<!--        <set>-->
+<!--            <if test="username != null and username != '' ">-->
+<!--                username = #{username},-->
+<!--            </if>-->
+<!--            &lt;!&ndash;<if test="password != null and password !='' ">-->
+<!--                password = #{password}-->
+<!--            </if>&ndash;&gt;-->
+<!--            <if test="nickname != null and nickname != ''  ">-->
+<!--                nickname = #{nickname},-->
+<!--            </if>-->
+<!--            <if test="email != null and email != '' ">-->
+<!--                email = #{email},-->
+<!--            </if>-->
+<!--            <if test="phone != null and phone !='' ">-->
+<!--                phone = #{phone},-->
+<!--            </if>-->
+<!--            <if test="address != null and address != '' ">-->
+<!--                address = #{address}-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        <where>-->
+<!--            id = #{id}-->
+<!--        </where>-->
+<!--    </update>-->
+    <select id="selectData" resultType="com.pluto.entity.User">
+        select * from sys_user
+        <where>
+            <if test="username != null and username != '' ">
+                username like "%"#{username}"%"
+           </if>
+            <if test="email != null and email != '' ">
+               or email like "%"#{email}"%"
+            </if>
+            <if test="address != null and address != '' ">
+               or address like "%"#{address}"%"
+            </if>
+        </where>
+    </select>
+    <select id="selectWithOutId" resultType="com.pluto.entity.User">
+        select username, password,nickname,email,phone,address,create_time,head_sculpture_url from sys_user;
+    </select>
+</mapper>

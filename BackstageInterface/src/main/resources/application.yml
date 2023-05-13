@@ -1,0 +1,43 @@
+server:
+  port: 8181
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pluto?serverTimezone=GMT%2b8
+    username: root
+    password: root
+  # 设置文件上传的大小
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+#mybatis:
+#  # 全局配置
+#  configuration:
+#    # 日志文件
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    # 映射下划线
+#    map-underscore-to-camel-case: true
+#  # xml文件的位置
+#  mapper-locations: classpath:/mapper/*.xml
+#  # 类型别名
+#  type-aliases-package: com.pluto.entity
+
+#配置mp
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.pluto.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 自定义文件上传路径
+files:
+  upload:
+    path: D:/我的网页开发/个人后台管理系统/files/
